@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blob URL Generator</title>
+</head>
+<body>
+    <h1>Blob URLを生成しよう！</h1>
+    <input type="file" id="fileInput" accept="*">
+    <p>生成されたBlob URL:</p>
+    <p id="blobUrlDisplay"></p>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const blobUrl = URL.createObjectURL(file);
+                document.getElementById('blobUrlDisplay').textContent = blobUrl;
+            } else {
+                document.getElementById('blobUrlDisplay').textContent = 'ファイルが選択されていません';
+            }
+        });
+    </script>
+</body>
+</html>
