@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>テキストファイル表示</title>
+</head>
+<body>
+    <textarea id="textInput" rows="10" cols="30" placeholder="ここにテキストを入力してください"></textarea><br>
+    <button id="displayButton">テキストファイルを表示</button>
+
+    <script>
+        document.getElementById('displayButton').addEventListener('click', function() {
+            // テキストボックスからテキストを取得
+            const text = document.getElementById('textInput').value;
+
+            // Blobを生成
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+
+            // 新しいウィンドウを開き、Blob URLを表示
+            const newWindow = window.open(url, '_blank');
+
+            // 新しいウィンドウが開いた後、URLを解放
+            newWindow.onload = function() {
+                URL.revokeObjectURL(url);
+            };
+        });
+    </script>
+</body>
+</html>
