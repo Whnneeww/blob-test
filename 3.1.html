@@ -29,8 +29,6 @@
             // 生成されたHTMLを新しいタブで表示
             const newTab = window.open(blobUrl, '_blank');
             newTab.onload = function() {
-                // タブを閉じたときにBlob URLを解放
-                URL.revokeObjectURL(blobUrl);
             };
         });
     </script>
