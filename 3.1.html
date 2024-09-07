@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blob URL Generator for HTML File</title>
+</head>
+<body>
+    <h1>テキストデータからHTMLファイルを生成しよう！</h1>
+    <textarea id="textInput" rows="10" cols="30" placeholder="ここにHTMLコンテンツを入力してください..."></textarea><br>
+    <button id="generateButton">HTMLファイルを表示</button>
+    
+    <p>生成されたBlob URL:</p>
+    <p id="blobUrlDisplay"></p>
+
+    <script>
+        document.getElementById('generateButton').addEventListener('click', function() {
+            const textInput = document.getElementById('textInput').value;
+            // ここから始めて他のスクリプトにHTMLをそのまま表示
+            const htmlContent = textInput;
+
+            // Blobオブジェクトの作成
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const blobUrl = URL.createObjectURL(blob);
+
+            // URLを表示
+            document.getElementById('blobUrlDisplay').textContent = blobUrl;
+
+            // 生成されたHTMLを新しいタブで表示
+            const newTab = window.open(blobUrl, '_blank');
+            newTab.onload = function() {
+                // タブを閉じたときにBlob URLを解放
+                URL.revokeObjectURL(blobUrl);
+            };
+        });
+    </script>
+</body>
+</html>
