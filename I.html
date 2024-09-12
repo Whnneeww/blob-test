@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>日付選択とテキストファイル出力</title>
+</head>
+<body>
+    <h1>日付を選択してください</h1>
+    <input type="datetime-local" id="dateTimeInput" />
+    <button id="downloadButton">ファイルとして出力</button>
+
+    <script>
+        document.getElementById('downloadButton').addEventListener('click', () => {
+            const dateTimeInput = document.getElementById('dateTimeInput').value;
+            if (!dateTimeInput) {
+                alert("日付を選択してください!");
+                return;
+            }
+
+            // 日付をUTC形式に変換
+            const date = new Date(dateTimeInput);
+            const utcDateTime = date.toISOString().replace('T', ' ').substr(0, 19);
+
+            // テキストファイルを生成
+            const blob = new Blob([utcDateTime], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'dateTime.txt';
+            document.body.appendChild(a);
+            a.click();
+
+            // 後処理
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
