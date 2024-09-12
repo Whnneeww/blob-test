@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>過去の日付選択</title>
+</head>
+<body>
+    <h1>過去の日付を選択してみよう！</h1>
+    <input type="date" id="dateInput" />
+
+    <script>
+        window.onload = function() {
+            // 今日の日付を取得
+            const today = new Date();
+            // 年、月、日を取得
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            // 最大日付を設定（今日の日付）
+            document.getElementById('dateInput').setAttribute('max', `${year}-${month}-${day}`);
+        };
+    </script>
+</body>
+</html>
