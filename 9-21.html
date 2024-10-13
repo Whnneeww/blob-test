@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMLテスト環境</title>
+</head>
+<body>
+    <h1>HTMLテスト環境</h1>
+    <textarea id="htmlInput" rows="10" cols="50" placeholder="ここにHTMLを入力してください"></textarea><br>
+    <button id="previewButton">プレビュー</button>
+
+    <script>
+        document.getElementById('previewButton').addEventListener('click', function() {
+            const htmlContent = document.getElementById('htmlInput').value;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+
+            // 新しいタブで開く
+            window.open(url, '_blank');
+        });
+    </script>
+</body>
+</html>
