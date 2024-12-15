@@ -18,16 +18,7 @@
         document.getElementById('generateButton').addEventListener('click', function() {
             const textInput = document.getElementById('textInput').value;
             // HTMLファイル内容の生成
-            const htmlContent = `<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>Generated HTML</title>
-</head>
-<body>
-<pre>${textInput}</pre>
-</body>
-</html>`;
+            const htmlContent = textInput;
             
             // Blobオブジェクトの作成
             const blob = new Blob([htmlContent], { type: 'text/html' });
